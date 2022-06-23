@@ -30,11 +30,10 @@ class Greeter(Plugin):
             if evt.source & SyncStream.STATE:
                 return
             else:
-                #await self.client.send_markdown(evt.room_id, self.config["message"], allow_html=True)
                 await self.client.send_notice(evt.room_id, html=self.config["message"]) 
                 if self.config["notification_room"]:
                     await self.client.send_markdown(self.config["notification_room"], f"User {evt.sender} joined \
-                            {evt.room_id}")
+                            {evt.room_id} and I want everyone in this @room to know")
 
 
 
