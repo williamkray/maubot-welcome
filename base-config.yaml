@@ -1,0 +1,10 @@
+rooms:
+  - '!someroom:example.com'
+  - '!otherroom:example.com'
+
+# add a room ID here to send a message to when someone joins the above rooms
+# (optional)
+notification_room: 
+
+message: |
+    Welcome! Please be sure to read the topic for helpful links and information.

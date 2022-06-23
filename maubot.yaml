@@ -1,0 +1,9 @@
+maubot: 0.1.0
+id: org.jobmachine.welcome
+version: 0.0.1
+modules:
+  - welcome
+main_class: Greeter
+extra_files:
+  - base-config.yaml
+database: false
