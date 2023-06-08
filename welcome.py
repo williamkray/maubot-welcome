@@ -30,7 +30,10 @@ class Greeter(Plugin):
             if evt.source & SyncStream.STATE:
                 return
             else:
-                await self.client.send_notice(evt.room_id, html=self.config["message"]) 
+                nick = self.client.parse_user_id(evt.sender)[0]
+                pill = '<a href="https://matrix.to/#/{mxid}">{nick}</a>'.format(mxid=evt.sender, nick=nick)
+                msg = self.config["message"].format(user=pill) 
+                await self.client.send_notice(evt.room_id, html=msg) 
                 if self.config["notification_room"]:
                     await self.client.send_markdown(self.config["notification_room"], f"User {evt.sender} joined \
                             {evt.room_id} and I want everyone in this @room to know")

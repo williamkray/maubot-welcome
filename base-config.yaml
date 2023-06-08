@@ -6,5 +6,6 @@ rooms:
 # (optional)
 notification_room: 
 
+# you can use {user} to reference the joining userID in this message
 message: |
-    Welcome! Please be sure to read the topic for helpful links and information.
+    Welcome {user}! Please be sure to read the topic for helpful links and information.
