@@ -15,6 +15,7 @@ class Config(BaseProxyConfig):
         helper.copy("rooms")
         helper.copy("message")
         helper.copy("notification_room")
+        helper.copy("notification_message")
 
 
 class Greeter(Plugin):
@@ -35,8 +36,11 @@ class Greeter(Plugin):
                 msg = self.config["message"].format(user=pill) 
                 await self.client.send_notice(evt.room_id, html=msg) 
                 if self.config["notification_room"]:
-                    await self.client.send_markdown(self.config["notification_room"], f"User {evt.sender} joined \
-                            {evt.room_id} and I want everyone in this @room to know")
+                    roomnamestate = await self.client.get_state_event(evt.room_id, 'm.room.name')
+                    roomname = roomnamestate['name']
+                    notification_message = self.config['notification_message'].format(user=evt.sender, 
+                                                                                      room=roomname)
+                    await self.client.send_notice(self.config["notification_room"], html=notification_message)
 
 
 

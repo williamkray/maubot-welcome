@@ -6,6 +6,16 @@ rooms:
 # (optional)
 notification_room: 
 
-# you can use {user} to reference the joining userID in this message
+# if using notification_room above, format the message you'd like to send to it
+# you may use the {user} variable for the full matrix ID of the user, and {room} 
+# for the room name in your message
+# html formatting is supported
+notification_message: |
+    User <code>{user}</code> has joined <code>{room}</code>.
+
+# you can use {user} to reference the joining user in this message using a
+# matrix.to link (rendered as a "pill" in element clients)
+# html formatting is supported
 message: |
     Welcome {user}! Please be sure to read the topic for helpful links and information.
+    Use <a href="https://google.com">Google</a> for all other queries ;)
